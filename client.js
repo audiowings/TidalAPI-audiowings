@@ -1,7 +1,7 @@
 'use strict';
 //Node.js modules
 
-const NODE_MODULES = '/dev/node.js/node_modules';
+const NODE_MODULES = '../../node_modules';
 const { AbortController, abortableFetch } = require(`${NODE_MODULES}/abortcontroller-polyfill/dist/cjs-ponyfill`);
 const _nodeFetch = require(`${NODE_MODULES}/node-fetch`);
 const { fetch, Request } = abortableFetch({ fetch: _nodeFetch, Request: _nodeFetch.Request });
@@ -24,13 +24,13 @@ function checkServer(url, timeout) {
 
 
 // Check if requests should route via Fiddler if running
-checkServer(FIDDLER_URL, 3000)
-  .then((r) => {
-    if (r !== undefined) {
-      console.log('Proxying via Fiddler on', FIDDLER_URL);
-      request = request.defaults({ 'proxy': FIDDLER_URL });
-    }
-  });
+// checkServer(FIDDLER_URL, 3000)
+//   .then((r) => {
+//     if (r !== undefined) {
+//       console.log('Proxying via Fiddler on', FIDDLER_URL);
+//       request = request.defaults({ 'proxy': FIDDLER_URL });
+//     }
+//   });
 
 request = request.defaults({ 'baseUrl': TIDAL_BASE_URL });
 
